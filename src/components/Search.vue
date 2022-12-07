@@ -1,9 +1,11 @@
 <template>
   <div class="container"> 
     <input
+      id="title"
       type="text"
       class="form-control"
       v-model="title"
+      @keyup.enter="apply"
       placeholder="Search for Movies, Series & more" />
     <div class="selects">
       <select
@@ -24,6 +26,7 @@
       </select>
     </div>
     <button
+      id="btn"
       class="btn btn-primary"
       @click="apply">
       Apply
@@ -32,11 +35,11 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data(){
     return {
       title : '',
-
       type: 'movie',
       year: '',
       number: 10,
@@ -63,7 +66,34 @@ export default {
         }
       ]
     }
+  },
+  methods:{
+    async apply(){
+      if(!this.title){
+        document.getElementById('title').focus()
+        return
+      }
+      document.getElementById('btn').focus()
+      const payload = {
+        'title':this.title,
+        'type':this.type,
+        'year':this.year,
+        'page':1
+      }
+      console.log(payload)
+      const res = await this.searchMovie(payload)
+      console.log(res)
+    },
+    async searchMovie(payload){
+      const OMDB_API_KEY='ae898d58'
+      const id = payload.id
+      const url = id
+      ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}&plot=full`
+      : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${payload.title}&type=${payload.type}&y=${payload.year}&page=${payload.page}`
 
+      console.log(url)
+      return axios.get(url)
+    }
   }
 }
 </script>
