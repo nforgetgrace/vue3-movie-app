@@ -23,6 +23,11 @@
         </option>
       </select>
     </div>
+    <button
+      class="btn btn-primary"
+      @click="apply">
+      Apply
+    </button>
   </div>
 </template>
 
@@ -47,14 +52,14 @@ export default {
         },
         {
           name: 'year',
-          items: function(){
-            const currentYear = new Date().getFullYear
-            const years= []
-            for (let i = currentYear; i >= 1985; i -= 1) {
+          items: (() => { //즉시실행함수 (function(){})() 괄호 ()() 2개
+            const years = []
+            const thisYear = new Date().getFullYear()
+            for (let i = thisYear; i >= 1985; i -= 1) {
               years.push(i)
             }
             return years
-          }
+          })()
         }
       ]
     }
