@@ -1,10 +1,13 @@
 <template>
-  <h1> Home! </h1>
+  <Headline />
 </template>
 
 <script>
+import Headline from '../components/headline.vue'
 export default {
-
+  components:{
+    Headline
+  }
 }
 </script>
 
