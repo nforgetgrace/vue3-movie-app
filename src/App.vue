@@ -12,17 +12,6 @@ export default {
   components:{
     Header,
     Footer
-  },
-  data() {
-    return {
-      message: 'Hello Vue!'
-    }
-  },
-  methods: {
-    handler() {
-      console.log(this.message)
-      this.message += '!'
-    }
   }
 }
 </script>
