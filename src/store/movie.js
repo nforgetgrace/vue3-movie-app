@@ -24,7 +24,7 @@ export default{
                 여기서는 payload를 객체로 받습니다.
                 payload를 객체로 받으면, mutation를 조금더 유연하게 사용할 수 있기는 합니다.
             */
-            state.movie = payload.data
+            state.movies = payload.data
         }
     },
     actions:{
