@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data(){
     return {
@@ -81,19 +80,8 @@ export default {
         'page':1
       }
       console.log(payload)
-      const res = await this.searchMovie(payload)
-      console.log(res)
-    },
-    async searchMovie(payload){
-      const OMDB_API_KEY='ae898d58'
-      const id = payload.id
-      const url = id
-      ? `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&i=${id}&plot=full`
-      : `https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${payload.title}&type=${payload.type}&y=${payload.year}&page=${payload.page}`
-
-      console.log(url)
-      return axios.get(url)
-    }
+      this.$store.dispatch('movie/searchMovies', payload)
+    }    
   }
 }
 </script>
