@@ -77,7 +77,7 @@ export default {
         'title':this.title,
         'type':this.type,
         'year':this.year,
-        'page':1
+        'number':this.number,
       }
       console.log(payload)
       this.$store.dispatch('movie/searchMovies', payload)
